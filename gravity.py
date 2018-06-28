@@ -45,7 +45,7 @@ def check_in(x,y,R=Re):
 
 
 
-def run(initial_param,N=15000,h=0.01):
+def run(initial_param,N=15000,h=0.001,energy_debug=False):
 	"""
 	a function that runs the simulation given the inital parameters, the number
 	of iterations each simulation must go through (default => 15000), and the
@@ -73,6 +73,28 @@ def run(initial_param,N=15000,h=0.01):
 
 	plt.plot(data[:,0],data[:,1])
 
+	if energy_debug:
+		return data
+
+def plot_energy(data,t):
+	# data => [x,y,vx,vy]
+	# KE = T = 0.5*m*(vx**2 + vy**2)
+	# PE = U = G*M*m/(x**2 + y**2)**0.5
+
+	m = 0.2
+
+	T = 0.5*m*(data[:,2]**2 + data[:,3]**2)
+	U = G*M*m/(np.sqrt(data[:,0]**2 + data[:,1]**2))
+
+	plt.figure()
+	plt.plot(T,label="Kinetic Energy")
+	plt.plot(U,label="Potential Energy")
+	plt.plot((T+U),label="Total Energy")
+	plt.legend()
+	plt.savefig("energy-plot-{}.pdf".format(t))
+	plt.close()
+
+
 
 print("simulation start")
 
@@ -82,8 +104,13 @@ for (t,vxs) in enumerate(np.linspace(1,1.3,5)):
 	plt.figure()
 	plt.axis('equal')
 	plot_earth()
-	run([0,1.0,vxs,0])
+	data = run([0,1.0,vxs,0],energy_debug=True)
 	plt.savefig("orbit-vx-{}.pdf".format(t))
-	plt.figure(clear=True)
+	plt.close()
+
+	# comment out below code if no energy-debug
+
+	plot_energy(data,t)
+
 
 print("simulation over.")
