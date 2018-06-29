@@ -25,7 +25,7 @@ And that's all there is to it.
 # Features
 This program is a very simple simulator where it has some kind of orbiting probe located above a particular planet (the specifications of which can be altered in the source code). The horizontal velocity ranges from 1 all the way to 1.3 units which gives you a fair idea about the different kinds of orbits that an orbiter can perform.
 
-Additionally, after some feedback (mostly from Reddit), I have added a function that will plot the energy of each and every orbit (Kinetic, Potential and Total) since I found out (from said feedback) that the Euler method does not conserve energy and therefore the results would be inaccurate always. 
+Additionally, after receiving some feedback (mostly from Reddit (thanks [r/python](https://www.reddit.com/r/python))) I've added a function that also calculates the total energy of the planet-orbiter system. So, when you run the program now, you will see the different orbits (that you might have chosen) along with their corresponding Kinetic Energy, Potential Energy and Total Energy of the orbiter.
 
 This repo also includes some sample orbits in case you want to check them out.
 
