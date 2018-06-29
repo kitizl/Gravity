@@ -46,7 +46,7 @@ def check_in(x,y,R=Re):
 
 
 
-def run(initial_param,fig,N=15000,h=0.001,energy_debug=False):
+def run(initial_param,fig,N=int(1e6),h=1e-4,energy_debug=False):
 	"""
 	a function that runs the simulation given the inital parameters, the number
 	of iterations each simulation must go through (default => 15000), and the
@@ -99,7 +99,7 @@ def plot_energy(data,t,fig):
 print("simulation start")
 
 
-for (t,vxs) in enumerate(np.linspace(1,1.3,5)):
+for (t,vxs) in enumerate(np.linspace(1,1.5,5)):
 	# running through all vxs from 1 to 1.3
 	
 	# creating multiple plots for the same orbit
