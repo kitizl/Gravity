@@ -19,6 +19,7 @@ def plot_earth(fig,r=Re):
 	fig.plot(x,yp,color="black")
 	fig.plot(x,yn,color="black")
 
+
 def derive(params):
 	"""
 	function that returns the derivative each individual element
@@ -103,19 +104,21 @@ for (t,vxs) in enumerate(np.linspace(1,1.3,5)):
 	
 	# creating multiple plots for the same orbit
 
+	print([0,1.0,vxs,0])
+
 	fig, axs = plt.subplots(1,2,figsize=(19,10))
+	plt.suptitle("Simulated orbit and energy plots for $v_x={}$".format(vxs),fontsize=24)
 
 	plot_earth(fig=axs[0])
 	axs[0].axis('equal')
 	data = run([0,1.0,vxs,0],energy_debug=True,fig=axs[0])
+	
 
 	plot_energy(data,t,fig=axs[1])
+
+
 	plt.savefig("orbit-energy-vx-{}.pdf".format(t))
 	plt.close()
-
-	# comment out below code if no energy-debug
-
-
 
 
 print("simulation over.")
